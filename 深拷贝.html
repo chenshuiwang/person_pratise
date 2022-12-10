@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  function deepCopy(obj) {
+    if (typeof obj === "object" && !Array.isArray(obj)) {
+      const o = {};
+      for (const key in obj) {
+        if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
+          console.log(key);
+          o[key] = deepCopy(obj[key]);
+        } else {
+          console.log("key",key);
+          o[key] = obj[key];
+        }
+      }
+      return o;
+    } else {
+      return obj;
+    }
+  }
+  const obj = {
+    name: 1213,
+    children: {
+      name: "son",
+      say: () => {
+        console.log(111);
+      }
+    },
+    say: () => {
+      console.log("1111");
+    },
+  };
+  const obj2 = deepCopy(obj);
+  const obj3 = {};
+  obj3['say'] = obj['say']
+  obj.say = () => console.log("22222");
+  console.log(obj3, "obj2");
+</script>

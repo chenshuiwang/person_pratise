@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  function fn(arr) {
+    let array = [];
+    arr.forEach((v) => {
+      if (Array.isArray(v)) {
+        // array = array.concat(fn(v));
+        array.push(...fn(v));
+      } else {
+        array.push(v);
+      }
+    });
+    return array;
+  }
+
+  // 用reduce方法实现
+  function fn2(arr) {
+    return arr.reduce((pre, cur) => {
+      if (Array.isArray(cur)) {
+        return pre.concat(fn2(cur));
+      } else {
+        return pre.concat(cur);
+      }
+    });
+  }
+  //   用展开运算符实现
+  function fn3(arr) {
+    while (arr.some((v) => Array.isArray(v))) {
+      console.log(arr);
+      arr = [].concat(...arr);
+    }
+    return arr;
+  }
+  //   用split+tostring实现
+  function fn4(arr) {
+    return arr.toString().split[',']
+  }
+  const arr = [[1, 2, 3, 4], [[2, 4, 5]], [2], 3, 2, 3, 4, 5, 5];
+  console.log(fn3(arr));
+</script>

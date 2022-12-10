@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .item{
+        margin-top: 20px;
+    }
+    .item .title{
+        background-color: aqua;
+        color: #fff;
+        text-align: center;
+        justify-content: center;
+        padding: 20px 0;
+    }
+    .item .content{
+        height: 400px;
+        background-color: red;
+    }
+</style>
+<body>
+    <div>
+        <a href="javascipt:" onclick="getAnchor('#js')">js</a>
+        <a href="javascipt:" onclick="getAnchor('#java')">java</a>
+        <a href="javascipt:" onclick="getAnchor('#go')">go</a>
+    </div>
+
+    <div class="item">
+        <div class="title" id="js">javascipt</div>
+        <div class="content"></div>
+    </div>
+    <div class="item">
+        <div class="title" id="java">java</div>
+        <div class="content"></div>
+    </div>
+    <div class="item">
+        <div class="title" id="go">go</div>
+        <div class="content"></div>
+    </div>
+</body>
+</html>
+<script>
+    function getAnchor(e) {
+        console.log();
+        document.querySelector(e).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        })
+    }
+</script>

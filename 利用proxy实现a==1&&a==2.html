@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let a = new Proxy(window,{
+        get(target,key,proxy) {
+            console.log(key);
+            if (key === 'Symbol(Symbol.toPrimitive)') {
+                target.count? ++target.count : target.count = 1
+                console.log(target.count); 
+                return target.count
+            }
+        }
+    })
+    // let i = 1
+    // Object.defineProperty(window,'a',{
+    //     get(a,b) {
+    //         return i++
+    //     }
+    // })
+    console.log(a == 1 && a == 2 && a== 3);
+</script>

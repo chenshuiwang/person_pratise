@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  function Func(age) {
+    this.age = age;
+    if (!(this instanceof Func)) {
+      throw new TypeError("调用错误");
+    }
+    console.log('???');
+  }
+  Object.defineProperty(Func.prototype, "say", {
+    enumerable: false,
+    value: function () {
+      console.log(this.age);
+      if (!(this instanceof Func)) {
+        throw new TypeError("调用错误");
+      }
+    },
+  });
+  const f = new Func(14);
+  Func()
+</script>

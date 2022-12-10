@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      山西汾阳的杏花村说，他们那里生产汾酒，历代文人墨客留下了许多诗文碑刻，杜牧的《清明》诗位列群碑之首——这当然表明，山西杏花村的身份确凿无疑。然而经过考证，杜牧一生从没有到过山西，怎么可能在汾阳喝酒?况且山西汾阳清明从不下雨，有时还要下雪，又何来“清明时节雨纷纷”呢?
+      　　
+    </p>
+    <p>
+      如此看来，山西汾阳杏花村不是“真正的”杏花村。那么，安徽贵池县的杏花村正宗吗?贵池县的杏花村古时也以酿酒著名。杜牧曾在贵池为官两年，这期间他酷爱喝酒、郊游。但经过考证，有人同样提出了两个疑问：第一、写《清明》的时候杜牧已经上任半年，他嗜酒如命，哪能不知杏花村去处而向牧童问路?第二、既然为官，喝酒自有下人服侍，杜牧又何必亲自去讨买呢?如此推断，安徽的杏花村也不“属实”。
+    </p>
+  </body>
+</html>
+<script>
+    const systhesis = window.speechSynthesis
+    document.addEventListener('mouseup',() => {
+        const txt = window.getSelection().toString()
+        if (txt) {
+            const utterance = new SpeechSynthesisUtterance(txt)
+            systhesis.speak(utterance)
+        }
+    })
+</script>

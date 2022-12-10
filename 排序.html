@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+    // 冒泡排序
+    function mpSort(arr) {
+      console.log("????");
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = i; j < arr.length; j++) {
+          if (arr[i] > arr[j]) {
+            console.log("????");
+            let temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+          }
+        }
+      }
+      return arr;
+    }
+
+    //   选择排序
+    function selectSort(arr) {
+      for (let i = 0; i < arr.length; i++) {
+        let mix = i;
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[mix]) {
+            mix = j;
+          }
+        }
+        if (mix != i) {
+          let temp = arr[i];
+          arr[i] = arr[mix];
+          arr[mix] = temp;
+        }
+      }
+      return arr;
+    }
+
+    //   插入排序
+    function insertSort(arr) {
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < arr[i - 1]) {
+          let temp = arr[i];
+          let j;
+          for (j = i - 1; j >= 0; j--) {
+            if (arr[j] > temp) {
+              arr[j + 1] = arr[j];
+            } else {
+              break;
+            }
+          }
+          arr[j + 1] = temp;
+        }
+      }
+      return arr;
+    }
+
+    //   快速排序
+    function quickSort(arr) {
+      if (arr.length < 2) {
+        return arr;
+      }
+      let temp = arr[0];
+      const before = [];
+      const after = [];
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] <= arr[0]) {
+          before.push(arr[i]);
+        } else {
+          after.push(arr[i]);
+        }
+      }
+      return quickSort(before).concat([temp].concat(quickSort(after)));
+    }
+
+  //   归并排序
+  function gbSort(arr){
+      if (arr.length < 2) {
+          return arr
+      }
+      const mid = Math.ceil(arr.length/2)
+      const left = arr.splice(0,mid)
+      const right = arr
+      return merge(gbSort(left),gbSort(right))
+      function merge(left,right) {
+        let temp = []
+        while(left.length && right.length) {
+          if (left[0] > right[0]) {
+            temp.push(right.shift())
+          } else {
+            temp.push(left.shift())
+          }
+        }
+        if (left.length){
+          temp = temp.concat(left)
+        }
+        if (right.length) {
+          temp = temp.concat(right)
+        }
+        return temp
+      }
+      
+  }
+    console.log(gbSort([3, 2, 1, 6, 1, 2, 88, 45, 7, 0]));
+</script>

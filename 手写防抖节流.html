@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>123131</h1>
+    <h1>1000</h1>
+    <h1>1000</h1>
+    <h1>1000</h1>
+    <h1>1000</h1>
+    <h1>1000</h1>
+    <h1>1000</h1>
+    <h1>1000</h1>
+    <h1>1000</h1>
+  </body>
+</html>
+<script>
+  // 防抖
+  function fd(callback, delay) {
+    let timeout = null;
+    return function (e) {
+        console.log(arguments);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        callback.call(this,e);
+      }, delay);
+    };
+  }
+  // 节流
+  function throttle(callback, timeout) {
+    let lastTime = 0;
+    return function () {
+      if (Date.now() - lastTime > timeout) {
+        console.log("??????");
+        callback().call(this);
+        lastTime = Date.now();
+      }
+    };
+  }
+
+  document.onscroll = fd(function () {
+    console.log("throttle函数执行了" + Date.now());
+  }, 600);
+//   document.onscroll = function () {
+//     console.log("throttle函数执行了" + Date.now());
+//   };
+</script>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>临时项目</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="temporary">
+            <div class="search">
+                <el-input v-model="searchKey" style="width:250px" clearable></el-input>
+                <el-button style="margin-left:20px" type="primary" @click="searchData">测试搜索</el-button>
+                <el-button style="margin: 0 20px" type="primary" @click="reset">重置</el-button>
+                <!-- <el-radio-group v-model="searchType" @change="searchData">
+                    <el-radio :label="1">精准查询</el-radio>
+                    <el-radio :label="2">分词查询（弹性查询）</el-radio>
+                  </el-radio-group> -->
+            </div>
+            <div class="table_list">
+                <el-table :data="tableData" border :header-cell-style="{ background: '#005FED', color: '#fff' }">
+                    <el-table-column prop="category_name" label="类目" width="200"></el-table-column>
+                    <el-table-column prop="id" label="文章ID" width="200"></el-table-column>
+                    <el-table-column prop="title" label="标题" width="200"></el-table-column>
+                    <el-table-column prop="author" label="作者" width="200"></el-table-column>
+                    <el-table-column prop="summary" label="简述" width="400"></el-table-column>
+                    <el-table-column prop="content" label="正文">
+                        <template slot-scope="scope">
+                            <div v-html="scope.row.content" style="text-align: left;"></div>
+                            <div style="text-align: center;color:blue">
+                                <span v-if="scope.row.match_text">命中关键字：{{scope.row.match_text}}；</span>
+                                <span v-if="scope.row.action_time">搜索时间：{{scope.row.action_time}}</span>
+                            </div>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <div style="display:flex;justify-content:center;">
+                <el-pagination v-show="tableData && tableData.length !== 0" :current-page.sync="currentPage"
+                    :page-sizes="[10, 20, 50, 100]" :page-size="pageSize"
+                    layout="total, sizes, prev, pager, next, jumper" :total="totalPage" @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"></el-pagination>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                searchKey: '',
+                tableData: [],
+                pageSize: 100,
+                totalPage: 0,
+                currentPage: 1,
+                searchType: 1
+            }
+        },
+        created() {
+            this.getData()
+        },
+        methods: {
+            getData() {
+                var data = JSON.stringify({
+                    start: (this.currentPage - 1) * this.pageSize,
+                    limit: this.pageSize,
+                    content: this.searchKey,
+                    // search_type: this.searchType
+                })
+                var xhr = new XMLHttpRequest()
+                xhr.addEventListener('readystatechange', () => {
+                    if (xhr.readyState === 4) {
+                        const responseText = JSON.parse(xhr.responseText)
+                        if (responseText.data) {
+                            responseText.data.forEach((v,i) => {
+                                let content = v.content;
+                                if (this.searchKey) {
+                                    content = content.replaceAll(this.searchKey, "<span style='background-color: red;'>" + this.searchKey + '</span>');
+                                }
+                                content = content.replaceAll('\\n','')
+                                content = content.replaceAll('\\r','')
+                                responseText.data[i].content = content
+                                if (responseText.action_time) {
+                                    responseText.data[i].action_time = responseText.action_time
+                                }
+                            })
+                        }
+                        this.tableData = responseText.data || []
+                        this.totalPage = responseText.total || 0
+                    }
+                })
+                xhr.open('POST', 'https://cgi-beta.jys.site/fcgi/api/v1/article/search')
+                xhr.setRequestHeader('Content-Type', 'application/json')
+                xhr.send(data)
+            },
+            handleSizeChange(val) {
+                this.pageSize = val
+                this.currentPage = 1
+                this.getData()
+            },
+            handleCurrentChange(val) {
+                this.currentPage = val
+                this.getData()
+            },
+            searchData() {
+                this.currentPage = 1
+                this.getData()
+            },
+            reset(){
+                this.currentPage = 1
+                this.pageSize = 100
+                this.totalPage = 0
+                this.searchKey = ''
+                this.searchType = 1
+                this.getData()
+            }
+        },
+    })
+</script>
+<style>
+    .temporary {
+        padding: 20px;
+    }
+
+    .temporary>div {
+        margin-bottom: 20px;
+    }
+
+    .remark {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        margin: 0;
+    }
+
+    .tooltip {
+        width: 600px;
+    }
+
+    .el-table .cell {
+        text-align: center;
+        margin: 0
+    }
+</style>

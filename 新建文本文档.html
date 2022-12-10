@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>第一个 ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <style>
+        .wrap{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .con{
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div class="wrap" onclick="clickWrap()">
+        <div class="con"></div>
+    </div>
+    <img src="http://157.122.54.189:9060/img/swiper/1.png" alt="">
+    </script>
+</body>
+</html>
+<script>
+    // let obj = {
+    //     "(":")",
+    //     "[":"]",
+    //     "{":"}"
+    // }
+    // function func(str){
+    //     let arr = str.split('')
+    //     if(arr.length%2 != 0) {
+    //         console.log("输入不合法")
+    //         return;
+    //     }
+    //     for(let i = 0;i<arr.length;i++){
+    //         if(["(","[","{"].includes(arr[i])){
+    //             let isRight = false;
+    //             if (obj[arr[i]] === arr[i+1]) {
+    //                 isRight = true; 
+    //             } else {
+    //                 for(let j=i+3;j<arr.length;j+=3){
+    //                     if(obj[arr[i]] === arr[j]) {
+    //                         isRight = true
+    //                     }
+    //                 }  
+    //             }
+    //             if(!isRight){
+    //                 console.log("输入不合法")
+    //                 return
+    //             }
+    //         }
+    //     }
+    //     console.log("正确");
+
+    // }
+    // let str = '()()'
+    // func("({}}");
+
+    // for(var i =0;i<3;i++){
+    //     (function(){
+    //         setTimeout(() => {
+    //         console.log(i);
+    //     }, 1000)
+    //     })();
+    // }
+    // (function(){
+    //     // console.log(a);
+    // }())
+    // let obj = {name: 'jesson'};
+    // Object.defineProperty(obj,"name",{
+    //     get(){
+    //         return val
+    //     },
+    //     set(val){
+    //         console.log('set');
+    //         return val
+    //     }
+    // })
+    // console.log(obj.name);
+
+
+</script>
+<script src="http://cdn.bootcss.com/Mock.js/1.0.0/mock-min.js"></script>
+  <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+  <script type="text/javascript">
+    var url = ''
+    var data = Mock.mock(url, {
+      "user|3-4": [{
+        'name': '@cname', //中文名称
+        'age|1-100': 100, //100以内随机整数
+        'birthday': '@date("yyyy-MM-dd")', //日期
+        'city': '@city(false)' //中国城市
+      }]
+    });
+    $.ajax({
+    //   url: url,
+      type: 'post',
+      contentType: 'text/plain',
+      dataType: 'json',
+      success: function(res) {
+        console.log(res)
+      }
+    });
+    let arguments = [1,2,3,3]
+    var name = 'mike'
+    let obj = {
+        // this.name = 'jack',
+        name: 'jack',
+        say:()=>{
+            // return ()=> {
+                console.log(this.name);
+            // }
+        },
+        
+        
+    }
+   function func(){
+    setTimeout(() => {
+        console.log(this);
+    }, 100);
+   }
+   function func2(){
+      return function(){
+          return function(){
+              return function(){
+                  console.log(this.name);
+              }
+          }
+      }
+   }
+   func.call({name:'merry'});
+   func2()()()();
+//    obj.say()
+  </script>

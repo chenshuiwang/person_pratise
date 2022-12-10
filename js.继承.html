@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  // function Parent(gender) {
+  //   this.name = 'mike'
+  //   this.obj = {
+  //     sex: 'nan',
+  //     gender
+  //   }
+  // }
+  // Parent.prototype.setName = function(name) {
+  //   this.name = name
+  // }
+
+  // // function Son(age) {
+  // //   this.age = age
+  // // }
+
+  // // 原型链继承
+  // Son.prototype = new Parent()
+  // // 构造函数继承
+  // function Son(gender) {
+  //   Parent.call(this,gender)
+  // }
+  // const son = new Son('1')
+  // son.obj.gender = 3
+  // const son2= new Son('2')
+  // console.log(son2.obj.gender);
+
+  const parent = {
+    name: "mike",
+    obj: {
+      age: 100,
+    },
+  };
+  // 原型式继承
+  function createObj(parent) {
+    const fn = function () {};
+    fn.prototype = parent;
+    return new fn();
+  }
+  const son = createObj(parent);
+  son.obj.age = "mike";
+  const son2 = createObj(parent);
+  // console.log(son2.obj.age);
+  var foo = {
+    name: "a",
+    func: () => {
+        console.log(this.name,this);
+      }
+  };
+  foo.name = "b";
+  foo.func();
+</script>

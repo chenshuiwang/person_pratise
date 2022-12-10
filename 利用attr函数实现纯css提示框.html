@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    p{
+        line-height: 25px;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .special{
+        color: blue;
+        cursor: pointer;
+        text-decoration: underline;
+        position: relative;
+    }
+    .special::before{
+        content: attr(data-text);
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        width: 100px;
+        background-color: skyblue;
+        border-radius: 5px;
+        color: #fff;
+        padding: 15px;
+        line-height: 1.1;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity .5s;
+        bottom: 125%;
+        left: 50%;
+        /* margin-left: -60px; */
+        transform: translateX(-50%);
+        visibility: hidden;
+        font-size: 0.7em;
+    }
+    .special::after{
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-top: 5px solid red;
+        position: absolute;
+        bottom: 0;
+        visibility: hidden;
+        opacity: 0;
+    }
+    .special:hover{
+        color: red;
+    }
+    .special:hover::before,.special:hover::after{
+        opacity: 1;
+        visibility: visible;
+        /* border-color: yellow; */
+    }
+    ::selection{
+        color: #fff;
+        background-color: red;
+    }
+</style>
+<body><div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+<div>10</div>
+    <p>如何使绝对定位内部元素<span data-text="不继承父级不继承父级" class="special">不继承父级不继承父级</span>宽度，而是靠内容自动撑开宽度(转载）</p>
+</body>
+</html>

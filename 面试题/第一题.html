@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .b1,
+      .b2 {
+        position: absolute;
+        background-color: black;
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="box"></div> -->
+  </body>
+</html>
+<script>
+  let box = document.querySelector(".box");
+  let left = 0;
+  //   run()
+  function run() {
+    // setTimeout(() => {
+    //   if (left > window.innerWidth) {
+    //     left = -50;
+    //   }
+    //   left += 5;
+    //   box.style.marginLeft = left + "px";
+    //   this.run();
+    // }, 10);
+    console.log(box);
+  }
+
+  function Box(obj) {
+    this.position = obj.position;
+    this.speed = obj.speed;
+    this.left = 0;
+    this.box = document.createElement("div");
+    this.box.style = {
+        width: "50px",
+        height: '50px',
+        backgroundColor: 'red',
+        left: obj.position.x + 'px',
+        position: 'absolute'
+    }
+    // this.box.style.width = "50px";
+    // this.box.style.height = "50px";
+    // this.box.style.position = 'absolute'
+    // this.box.style.backgroundColor = "red";
+    // this.box.style.left = obj.position.x + 'px'
+    console.log(this.box);
+    document.querySelector("body").appendChild(this.box);
+  }
+  Box.prototype.run = function () {
+    setTimeout(() => {
+      if (this.left > window.innerWidth) {
+        this.left = 0;
+      }
+      this.left += this.speed;
+
+      this.box.style.left = this.left + "px";
+      this.run();
+    }, 10);
+  };
+  
+  let box1 = new Box({
+    position: {
+      x: 0,
+      y: 0,
+    },
+    speed: 5,
+  });
+  let box2 = new Box({
+    position: {
+      x: 0,
+      y: 0,
+    },
+    speed: 10,
+  });
+//   box1.run();
+//   box2.run();
+</script>

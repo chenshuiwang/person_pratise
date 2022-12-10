@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .balls{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .ball_item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .ball{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: linear-gradient(red,yellow);
+            animation: MyKeyFrame .5s infinite alternate;
+        }
+        .ball_shadow{
+            width: 50px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, .5);
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            animation: Shadow .5s infinite alternate;
+        }
+        @keyframes MyKeyFrame {
+            0%{
+                transform: translateY(0);
+            }
+            100%{
+                transform: translateY(-150px);
+            }
+        }
+        @keyframes Shadow {
+            0%{
+                transform: scale();
+            }
+            100%{
+                transform: scale(.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="balls">
+        <div class="ball_item">
+            <div class="ball"></div>
+            <div class="ball_shadow"></div>
+        </div>
+    </div>
+</body>
+</html>

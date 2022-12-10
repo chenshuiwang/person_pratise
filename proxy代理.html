@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    const obj = {
+        _store: 0
+    }
+    const p = new Proxy(obj,{
+        get(target,prop,receiver) {
+            console.log(prop,receiver);
+            if (prop === Symbol.toPrimitive) {
+                return () => {
+                    return target._store
+                }
+            } else {
+                target._store += +prop
+            } 
+            return receiver
+        },
+        set(target,key,receiver){
+            if (key === 'age') {
+                return 111
+            }
+            console.log("???");
+        }
+    })
+    console.log(p[1][2][3] + 100);
+    p.age = 100
+    console.log(p.age);
+</script>
