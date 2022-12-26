@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="margin-bottom: 20px;">231231</div>
+    <div style="margin-top: 20px;">fsfsfd</div>
+</body>
+</html>
+<script>
+    function sort(arr) {
+        if (arr.length && arr.length >2) {
+            let jishu = []
+            let oushu = []
+            let result = []
+            arr.forEach((v,i) => {
+                if (i % 2 === 0) {
+                    oushu.push(v)
+                } else {
+                    jishu.push(v)
+                }
+            })
+            jishu.sort((a,b) => b - a)
+            oushu.sort((a,b) => a - b)
+            while(jishu.length&&oushu.length) {
+                result.push(oushu.shift())
+                result.push(jishu.shift())
+            }
+            if (oushu.length) {
+                result = result.concat(oushu)
+            }
+            if (jishu.length) {
+                result = result.concat(jishu)
+            }
+            return result
+        } else {
+            return arr
+        }
+    }
+    const arr = [4,1,2,3]
+    console.log(sort(arr));
+</script>

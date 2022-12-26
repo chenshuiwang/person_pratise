@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    Lorem ipsum dolor sit.
+  </body>
 </html>
 <script>
-    async function loadNovel() {
-        const url = 'https://duyi-static.oss-cn-beijing.aliyuncs.com/files/novel.txt'
-        fetch(url).then(res => {
-            console.log(res);
-        }).catch(err => {
-            console.log(err);
-        })
-        // const res = await fetch(url)
-        // const txt = await res.text()
-        // console.log(txt);
+  async function loadNovel() {
+    const url =
+      "https://duyi-static.oss-cn-beijing.aliyuncs.com/files/novel.txt";
+    // fetch(url).then(res => {
+    //     console.log(res);
+    // }).catch(err => {
+    //     console.log(err);
+    // })
+    const res = await fetch(url);
+    const reader = res.body.getReader();
+    for (;;) {
+      const { value, done } = await reader.read;
+      if (done) {
+        break;
+      }
+      const decoder = new TextDecoder();
+      const text = decoder(value);
     }
-    loadNovel()
+  }
+  loadNovel();
 </script>
