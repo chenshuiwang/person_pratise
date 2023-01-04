@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const searcher = {};
+  const addMehod = (obj, name, fn) => {
+    const old = obj[name];
+    obj[name] = function (...args) {
+        console.log('args',fn.length);
+      if (fn.length === args.length) {
+        return fn.apply(this, args);
+      } else if (typeof old === "function") {
+        return old.apply(this, args);
+      }
+    };
+  };
+  addMehod(searcher,'find',() => {
+    console.log("查询所有用户");
+  })
+  addMehod(searcher,'find',(name) => {
+    console.log("按姓名查询用户");
+  })
+  addMehod(searcher,'find',(f,l) => {
+    console.log("按照姓和名查询用户");
+  })
+  searcher.find();
+</script>
